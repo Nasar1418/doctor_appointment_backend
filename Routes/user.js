@@ -1,3 +1,36 @@
+// import mongoose from "mongoose";
+// import dotenv from "dotenv";
+
+// dotenv.config();
+
+// const app = express();
+// const port = process.env.PORT || 8000;
+
+// // Middleware
+// app.use(express.json());
+
+// // MongoDB Connection
+// const connectDB = async () => {
+//   try {
+//     await mongoose.connect(process.env.MONGO_URL);
+//     console.log("MongoDB is Connected...");
+//   } catch (error) {
+//     console.error("MongoDB connection failed:", error.message);
+//     process.exit(1); // Exit if connection fails
+//   }
+// };
+
+// // Routes (Example)
+// app.get("/", (req, res) => {
+//   res.send("Hello, World!");
+// });
+
+// // Start Server
+// app.listen(port, () => {
+//   connectDB();
+//   console.log("Server is running on port " + port);
+// });
+
 import {
   updateUser,
   deleteUser,
@@ -25,3 +58,4 @@ router.get(
 );
 
 export default router;
+

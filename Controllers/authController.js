@@ -24,7 +24,7 @@ export const register = async (req, res) => {
     }
     //check if user exist
     if (user) {
-      return res.status(400).json({message: "User is already exist"});
+      return res.status(400).json({ message: "User is already exist" });
     }
     //hash password
     const salt = await bcrypt.genSalt(10);
@@ -80,26 +80,28 @@ export const login = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User already exist" });
     }
-    
+
     //compare password
     const isPasswordMatch = await bcrypt.compare(
-        req.body.password , user.password);
+      req.body.password,
+      user.password
+    );
 
     if (!isPasswordMatch) {
       return res.status(400).json({ message: "Invalid credintials" });
     }
     //get token
     const token = generateToken(user);
-    const {password,role,appointment, ...rest} = user._doc
+    const { password, role, appointment, ...rest } = user._doc;
 
-    res 
-        .status(200)
-        .json({status: true,message:"Successfully login ", token, data:{...rest}, role});
-
+    res.status(200).json({
+      status: true,
+      message: "Successfully login ",
+      token,
+      data: { ...rest },
+      role,
+    });
   } catch (err) {
-    res 
-    .status(500)
-    .json({status: false,message:"Failed to login "
-  })
-}
+    res.status(500).json({ status: false, message: "Failed to login " });
+  }
 };
